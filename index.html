@@ -1,261 +1,71 @@
+
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Friends & Memories — My Circle</title>
-<meta name="description" content="Personal friends site: school, college & company friends, photos, memories and playlists." />
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Friends Gallery</title>
 <style>
-  :root{
-    --bg:#f6f8fb; --card:#ffffff; --muted:#666; --accent:#0b66c3; --gap:18px;
-    --maxw:1100px;
-  }
-  *{box-sizing:border-box}
-  body{font-family:Inter,system-ui,Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:#111;line-height:1.45}
-  .wrap{max-width:var(--maxw);margin:28px auto;padding:20px}
-  header{display:flex;align-items:center;justify-content:space-between;gap:10px}
-  h1{margin:.2rem 0;font-size:1.4rem}
-  nav a{margin-left:10px;color:var(--accent);text-decoration:none;font-weight:600}
-  .intro{background:linear-gradient(90deg,#fff,#fbfdff);padding:18px;border-radius:10px;box-shadow:0 4px 14px rgba(10,20,60,.06);margin:14px 0}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--gap);margin:18px 0}
-  .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 12px rgba(13,24,48,.04);border:1px solid rgba(12,18,36,.04)}
-  .friend-photo{width:100%;height:200px;object-fit:cover;border-radius:8px}
-  .meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
-  .name{font-weight:700}
-  .muted{color:var(--muted);font-size:.9rem}
-  .memories{margin-top:10px;background:#fbfdff;padding:10px;border-radius:8px;font-size:.95rem}
-  .section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0}
-  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
-  .gallery img{width:100%;height:110px;object-fit:cover;border-radius:8px;cursor:pointer}
-  footer{margin:30px 0;color:var(--muted);font-size:.9rem}
-  /* responsive nav */
-  @media (max-width:640px){header{flex-direction:column;align-items:flex-start}nav{margin-top:8px}}
-  /* lightbox */
-  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:999}
-  .lightbox img{max-width:95%;max-height:85%;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.6)}
-  .chip{display:inline-block;background:#eef6ff;color:#034b85;padding:6px 10px;border-radius:999px;font-weight:600;margin-left:8px}
-  /* small buttons */
-  .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600}
-  .mini{padding:6px 8px;font-size:.88rem}
-  .contact{font-size:.95rem;margin-top:6px}
-  .contact a{color:var(--accent);text-decoration:none}
+body{{font-family:Segoe UI,Roboto,Arial;background:#f5f7fb;color:#111;margin:0;padding:20px}}
+.wrap{{max-width:1100px;margin:0 auto}}
+.grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:18px}}
+.card{{background:#fff;padding:10px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.06);text-align:center}}
+.thumb{{width:100%;height:160px;object-fit:cover;border-radius:8px}}
+.name{{font-weight:700;margin-top:8px}}
+.roll{{color:#666;font-size:0.95rem}}
+.header{{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}}
+.search{{padding:8px 10px;border-radius:8px;border:1px solid #ddd;width:280px}}
+/* slideshow */
+.slideshow{{margin-top:28px;background:#fff;padding:12px;border-radius:10px}}
+.slideshow img{{width:100%;height:280px;object-fit:cover;border-radius:8px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <div>
-      <h1>My Friends & Memories</h1>
-      <div class="muted">School • College • Company — organized & private</div>
-    </div>
-    <nav>
-      <a href="#school">School</a>
-      <a href="#college">College</a>
-      <a href="#company">Company</a>
-      <a href="#memories" class="btn mini">Shared Memories</a>
-    </nav>
-  </header>
+  <div class="header">
+    <h1>Friends — Gallery</h1>
+    <input id="search" class="search" placeholder="Search by name or roll">
+  </div>
+  <div class="grid" id="grid">
 
-  <div class="intro card">
-    <strong>Welcome!</strong>
-    <p class="muted">This site stores friendly profiles and shared memories. Replace the placeholder info & images with real content in the repo. Always ensure permission before posting contact details or photos.</p>
+<script>const __FRIENDS_PLACEHOLDER__ = 1;</script>
+
+  </div> <!-- grid -->
+  <div class="slideshow">
+    <h3>Group & Tour Photos</h3>
+    <div id="slideBox">
+      <img id="slideImg" src="photos/group1.jpg" alt="group photo">
+    </div>
   </div>
 
-  <!-- SCHOOL -->
-  <section id="school">
-    <div class="section-title">
-      <h2>School Friends <span class="chip">Summer batch</span></h2>
-      <div class="muted">3 friends • childhood memories</div>
-    </div>
-    <div class="grid">
-      <!-- Friend card template -->
-      <article class="card">
-        <img class="friend-photo" src="https://via.placeholder.com/800x500?text=School+Friends+1" alt="Priya - School friend">
-        <div class="meta">
-          <div>
-            <div class="name">Priya K.</div>
-            <div class="muted">Classmate (2002)</div>
-          </div>
-          <div class="muted">📍 Mumbai</div>
-        </div>
-        <div class="contact">
-          Email: <a href="mailto:priya@example.com">priya [at] example.com</a> • Phone: <span class="muted">hidden</span>
-        </div>
-        <div class="memories">
-          <strong>Fun memory:</strong> Bike rides to the lake and science fair winner. Favorite song: “Summer of 2002”.
-        </div>
-      </article>
-
-      <article class="card">
-        <img class="friend-photo" src="https://via.placeholder.com/800x500?text=School+Friends+2" alt="Ravi - School friend">
-        <div class="meta">
-          <div>
-            <div class="name">Ravi S.</div>
-            <div class="muted">Classmate (2002)</div>
-          </div>
-          <div class="muted">📍 Chennai</div>
-        </div>
-        <div class="contact">
-          Email: <a href="mailto:ravi@example.com">ravi [at] example.com</a>
-        </div>
-        <div class="memories">He taught us chess — undefeated for three years. Annual picnic legend.</div>
-      </article>
-
-      <article class="card">
-        <img class="friend-photo" src="https://via.placeholder.com/800x500?text=School+Friends+3" alt="Asha - School friend">
-        <div class="meta">
-          <div>
-            <div class="name">Asha P.</div>
-            <div class="muted">Classmate (2002)</div>
-          </div>
-          <div class="muted">📍 Delhi</div>
-        </div>
-        <div class="contact">
-          Email: <a href="mailto:asha@example.com">asha [at] example.com</a>
-        </div>
-        <div class="memories">Won the handwriting contest! We still tease about the trophy.</div>
-      </article>
-    </div>
-  </section>
-
-  <!-- COLLEGE -->
-  <section id="college">
-    <div class="section-title">
-      <h2>College Friends <span class="chip">Engineering</span></h2>
-      <div class="muted">4 friends • hostel nights</div>
-    </div>
-    <div class="grid">
-      <article class="card">
-        <img class="friend-photo" src="https://via.placeholder.com/800x500?text=College+Friend+1" alt="Vikram - College friend">
-        <div class="meta">
-          <div>
-            <div class="name">Vikram R.</div>
-            <div class="muted">Dept. IT (2008)</div>
-          </div>
-          <div class="muted">📍 Bengaluru</div>
-        </div>
-        <div class="contact">
-          Email: <a href="mailto:vikram@example.com">vikram [at] example.com</a>
-        </div>
-        <div class="memories">Night coding sessions + chai runs. Built our first project — a prank bot.</div>
-      </article>
-
-      <article class="card">
-        <img class="friend-photo" src="https://via.placeholder.com/800x500?text=College+Friend+2" alt="Sunita - College friend">
-        <div class="meta">
-          <div>
-            <div class="name">Sunita M.</div>
-            <div class="muted">Dept. CS (2008)</div>
-          </div>
-          <div class="muted">📍 Chennai</div>
-        </div>
-        <div class="contact">
-          Email: <a href="mailto:sunita@example.com">sunita [at] example.com</a>
-        </div>
-        <div class="memories">Drama club star — we acted in three college plays together.</div>
-      </article>
-    </div>
-  </section>
-
-  <!-- COMPANY -->
-  <section id="company">
-    <div class="section-title">
-      <h2>Company Friends <span class="chip">Work buddies</span></h2>
-      <div class="muted">5 friends • projects & coffee</div>
-    </div>
-    <div class="grid">
-      <article class="card">
-        <img class="friend-photo" src="https://via.placeholder.com/800x500?text=Company+Friend+1" alt="Karan - Company friend">
-        <div class="meta">
-          <div>
-            <div class="name">Karan P.</div>
-            <div class="muted">Lead Analyst</div>
-          </div>
-          <div class="muted">📍 Frisco, TX</div>
-        </div>
-        <div class="contact">Email: <a href="mailto:karan@example.com">karan [at] example.com</a></div>
-        <div class="memories">We ran a 48-hour migration and survived on pizza. Legendary sprint.</div>
-      </article>
-
-      <article class="card">
-        <img class="friend-photo" src="https://via.placeholder.com/800x500?text=Company+Friend+2" alt="Meera - Company friend">
-        <div class="meta">
-          <div>
-            <div class="name">Meera V.</div>
-            <div class="muted">Project Manager</div>
-          </div>
-          <div class="muted">📍 Charlotte, NC</div>
-        </div>
-        <div class="contact">Email: <a href="mailto:meera@example.com">meera [at] example.com</a></div>
-        <div class="memories">Organized the surprise for our client — on top of the world!</div>
-      </article>
-    </div>
-  </section>
-
-  <!-- Shared Memories -->
-  <section id="memories" style="margin-top:28px">
-    <div class="section-title">
-      <h2>Shared Memories & Group Photos</h2>
-      <div class="muted">Photos, playlists & stories</div>
-    </div>
-
-    <div class="card">
-      <h3 style="margin-top:0">Group Photo Gallery</h3>
-      <div class="gallery" id="gallery">
-        <!-- Replace the src with images in your repo under /images/ -->
-        <img src="https://via.placeholder.com/600x400?text=Group+1" alt="Group photo 1" data-full="https://via.placeholder.com/1200x800?text=Group+1">
-        <img src="https://via.placeholder.com/600x400?text=Group+2" alt="Group photo 2" data-full="https://via.placeholder.com/1200x800?text=Group+2">
-        <img src="https://via.placeholder.com/600x400?text=Group+3" alt="Group photo 3" data-full="https://via.placeholder.com/1200x800?text=Group+3">
-        <img src="https://via.placeholder.com/600x400?text=Group+4" alt="Group photo 4" data-full="https://via.placeholder.com/1200x800?text=Group+4">
-      </div>
-
-      <h3 style="margin-top:16px">Shared Memory Notes</h3>
-      <ul>
-        <li><strong>Annual Picnic 2010:</strong> We rented bikes, cooked together, and had a storm that made the night unforgettable.</li>
-        <li><strong>Hostel Days:</strong> Karan's midnight debugging, and Vikram's famous tea. We learned to survive on instant noodles.</li>
-        <li><strong>Project Launch 2019:</strong> We shipped the release at 2:00 AM and celebrated with donuts outside the office.</li>
-      </ul>
-
-      <h3 style="margin-top:16px">Shared Playlist</h3>
-      <p class="muted">Play a playlist we all loved (Spotify embed below). Replace the src with your playlist embed URL.</p>
-
-      <!-- Spotify embed example (replace with your playlist iframe code) -->
-      <div style="max-width:660px;margin:10px 0">
-        <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M" width="100%" height="120" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-      </div>
-
-    </div>
-  </section>
-
-  <footer>
-    <div class="muted">Site created for personal use. Please ask for permission before sharing others' contact details or images. To edit, update <code>index.html</code> in your GitHub repo.</div>
-  </footer>
+  <footer style="margin-top:18px;color:#666;font-size:0.95rem">Notes: Photos go in <code>photos/</code> folder. Click any card to open full profile.</footer>
 </div>
 
-<!-- Lightbox modal -->
-<div id="lightbox" class="lightbox" onclick="hideLightbox()"><img id="lightboxImg" alt="Expanded"></div>
-
 <script>
-  // Smooth scroll for nav
-  document.querySelectorAll('nav a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', e=>{
-      e.preventDefault();
-      document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth',block:'start'});
-    });
-  });
+const friends = [{&quot;name&quot;: &quot;Anand Siva . S&quot;, &quot;roll&quot;: &quot;10507002&quot;, &quot;page&quot;: &quot;friends/friend_10507002.html&quot;, &quot;photo&quot;: &quot;photos/10507002.jpg&quot;}, {&quot;name&quot;: &quot;Anitha .R&quot;, &quot;roll&quot;: &quot;10507004&quot;, &quot;page&quot;: &quot;friends/friend_10507004.html&quot;, &quot;photo&quot;: &quot;photos/10507004.jpg&quot;}, {&quot;name&quot;: &quot;Arthi . P&quot;, &quot;roll&quot;: &quot;10507006&quot;, &quot;page&quot;: &quot;friends/friend_10507006.html&quot;, &quot;photo&quot;: &quot;photos/10507006.jpg&quot;}, {&quot;name&quot;: &quot;Arun Kumar . K&quot;, &quot;roll&quot;: &quot;10507008&quot;, &quot;page&quot;: &quot;friends/friend_10507008.html&quot;, &quot;photo&quot;: &quot;photos/10507008.jpg&quot;}, {&quot;name&quot;: &quot;Ashok . K&quot;, &quot;roll&quot;: &quot;10507010&quot;, &quot;page&quot;: &quot;friends/friend_10507010.html&quot;, &quot;photo&quot;: &quot;photos/10507010.jpg&quot;}, {&quot;name&quot;: &quot;Boobalan . R&quot;, &quot;roll&quot;: &quot;10507013&quot;, &quot;page&quot;: &quot;friends/friend_10507013.html&quot;, &quot;photo&quot;: &quot;photos/10507013.jpg&quot;}, {&quot;name&quot;: &quot;Dhanasekar . C&quot;, &quot;roll&quot;: &quot;10507015&quot;, &quot;page&quot;: &quot;friends/friend_10507015.html&quot;, &quot;photo&quot;: &quot;photos/10507015.jpg&quot;}, {&quot;name&quot;: &quot;Dheepack . S&quot;, &quot;roll&quot;: &quot;10507017&quot;, &quot;page&quot;: &quot;friends/friend_10507017.html&quot;, &quot;photo&quot;: &quot;photos/10507017.jpg&quot;}, {&quot;name&quot;: &quot;Eswari . M&quot;, &quot;roll&quot;: &quot;10507019&quot;, &quot;page&quot;: &quot;friends/friend_10507019.html&quot;, &quot;photo&quot;: &quot;photos/10507019.jpg&quot;}, {&quot;name&quot;: &quot;Ganesh . S . S&quot;, &quot;roll&quot;: &quot;10507021&quot;, &quot;page&quot;: &quot;friends/friend_10507021.html&quot;, &quot;photo&quot;: &quot;photos/10507021.jpg&quot;}, {&quot;name&quot;: &quot;Geetha . K&quot;, &quot;roll&quot;: &quot;10507023&quot;, &quot;page&quot;: &quot;friends/friend_10507023.html&quot;, &quot;photo&quot;: &quot;photos/10507023.jpg&quot;}, {&quot;name&quot;: &quot;Hari Haran . A&quot;, &quot;roll&quot;: &quot;10507025&quot;, &quot;page&quot;: &quot;friends/friend_10507025.html&quot;, &quot;photo&quot;: &quot;photos/10507025.jpg&quot;}, {&quot;name&quot;: &quot;Kalpana . G&quot;, &quot;roll&quot;: &quot;10507027&quot;, &quot;page&quot;: &quot;friends/friend_10507027.html&quot;, &quot;photo&quot;: &quot;photos/10507027.jpg&quot;}, {&quot;name&quot;: &quot;Karthik . L&quot;, &quot;roll&quot;: &quot;10507029&quot;, &quot;page&quot;: &quot;friends/friend_10507029.html&quot;, &quot;photo&quot;: &quot;photos/10507029.jpg&quot;}, {&quot;name&quot;: &quot;Karthikeyan. S&quot;, &quot;roll&quot;: &quot;10507031&quot;, &quot;page&quot;: &quot;friends/friend_10507031.html&quot;, &quot;photo&quot;: &quot;photos/10507031.jpg&quot;}, {&quot;name&quot;: &quot;Koushik Kannan . K&quot;, &quot;roll&quot;: &quot;10507033&quot;, &quot;page&quot;: &quot;friends/friend_10507033.html&quot;, &quot;photo&quot;: &quot;photos/10507033.jpg&quot;}, {&quot;name&quot;: &quot;Kulothungan . K&quot;, &quot;roll&quot;: &quot;10507035&quot;, &quot;page&quot;: &quot;friends/friend_10507035.html&quot;, &quot;photo&quot;: &quot;photos/10507035.jpg&quot;}, {&quot;name&quot;: &quot;Lakshmipathy . P&quot;, &quot;roll&quot;: &quot;10507037&quot;, &quot;page&quot;: &quot;friends/friend_10507037.html&quot;, &quot;photo&quot;: &quot;photos/10507037.jpg&quot;}, {&quot;name&quot;: &quot;Madhubala . S&quot;, &quot;roll&quot;: &quot;10507039&quot;, &quot;page&quot;: &quot;friends/friend_10507039.html&quot;, &quot;photo&quot;: &quot;photos/10507039.jpg&quot;}, {&quot;name&quot;: &quot;Manoj Kumar . A&quot;, &quot;roll&quot;: &quot;10507041&quot;, &quot;page&quot;: &quot;friends/friend_10507041.html&quot;, &quot;photo&quot;: &quot;photos/10507041.jpg&quot;}, {&quot;name&quot;: &quot;Mirunalini.B&quot;, &quot;roll&quot;: &quot;10507043&quot;, &quot;page&quot;: &quot;friends/friend_10507043.html&quot;, &quot;photo&quot;: &quot;photos/10507043.jpg&quot;}, {&quot;name&quot;: &quot;MuthuKannan . B&quot;, &quot;roll&quot;: &quot;10507045&quot;, &quot;page&quot;: &quot;friends/friend_10507045.html&quot;, &quot;photo&quot;: &quot;photos/10507045.jpg&quot;}, {&quot;name&quot;: &quot;Naren . N&quot;, &quot;roll&quot;: &quot;10507047&quot;, &quot;page&quot;: &quot;friends/friend_10507047.html&quot;, &quot;photo&quot;: &quot;photos/10507047.jpg&quot;}, {&quot;name&quot;: &quot;Nithya Priya .M&quot;, &quot;roll&quot;: &quot;10507049&quot;, &quot;page&quot;: &quot;friends/friend_10507049.html&quot;, &quot;photo&quot;: &quot;photos/10507049.jpg&quot;}, {&quot;name&quot;: &quot;Prasath . M&quot;, &quot;roll&quot;: &quot;10507051&quot;, &quot;page&quot;: &quot;friends/friend_10507051.html&quot;, &quot;photo&quot;: &quot;photos/10507051.jpg&quot;}, {&quot;name&quot;: &quot;Praveen . P&quot;, &quot;roll&quot;: &quot;10507053&quot;, &quot;page&quot;: &quot;friends/friend_10507053.html&quot;, &quot;photo&quot;: &quot;photos/10507053.jpg&quot;}, {&quot;name&quot;: &quot;Priyadharsini . S&quot;, &quot;roll&quot;: &quot;10507055&quot;, &quot;page&quot;: &quot;friends/friend_10507055.html&quot;, &quot;photo&quot;: &quot;photos/10507055.jpg&quot;}, {&quot;name&quot;: &quot;Rajeev . J&quot;, &quot;roll&quot;: &quot;10507057&quot;, &quot;page&quot;: &quot;friends/friend_10507057.html&quot;, &quot;photo&quot;: &quot;photos/10507057.jpg&quot;}, {&quot;name&quot;: &quot;Ramesh Babu . L&quot;, &quot;roll&quot;: &quot;10507059&quot;, &quot;page&quot;: &quot;friends/friend_10507059.html&quot;, &quot;photo&quot;: &quot;photos/10507059.jpg&quot;}, {&quot;name&quot;: &quot;Rizvana . A&quot;, &quot;roll&quot;: &quot;10507061&quot;, &quot;page&quot;: &quot;friends/friend_10507061.html&quot;, &quot;photo&quot;: &quot;photos/10507061.jpg&quot;}, {&quot;name&quot;: &quot;Sanjay .K.M&quot;, &quot;roll&quot;: &quot;10507063&quot;, &quot;page&quot;: &quot;friends/friend_10507063.html&quot;, &quot;photo&quot;: &quot;photos/10507063.jpg&quot;}, {&quot;name&quot;: &quot;Selva Prabu . J&quot;, &quot;roll&quot;: &quot;10507065&quot;, &quot;page&quot;: &quot;friends/friend_10507065.html&quot;, &quot;photo&quot;: &quot;photos/10507065.jpg&quot;}, {&quot;name&quot;: &quot;Shankar Prabu . V.G&quot;, &quot;roll&quot;: &quot;10507068&quot;, &quot;page&quot;: &quot;friends/friend_10507068.html&quot;, &quot;photo&quot;: &quot;photos/10507068.jpg&quot;}, {&quot;name&quot;: &quot;Sheba Selvam&quot;, &quot;roll&quot;: &quot;10507070&quot;, &quot;page&quot;: &quot;friends/friend_10507070.html&quot;, &quot;photo&quot;: &quot;photos/10507070.jpg&quot;}, {&quot;name&quot;: &quot;Siva Kumar . P&quot;, &quot;roll&quot;: &quot;10507072&quot;, &quot;page&quot;: &quot;friends/friend_10507072.html&quot;, &quot;photo&quot;: &quot;photos/10507072.jpg&quot;}, {&quot;name&quot;: &quot;Sridhar.N&quot;, &quot;roll&quot;: &quot;10507074&quot;, &quot;page&quot;: &quot;friends/friend_10507074.html&quot;, &quot;photo&quot;: &quot;photos/10507074.jpg&quot;}, {&quot;name&quot;: &quot;Srinivasan . S&quot;, &quot;roll&quot;: &quot;10507076&quot;, &quot;page&quot;: &quot;friends/friend_10507076.html&quot;, &quot;photo&quot;: &quot;photos/10507076.jpg&quot;}, {&quot;name&quot;: &quot;Sriram . D&quot;, &quot;roll&quot;: &quot;10507078&quot;, &quot;page&quot;: &quot;friends/friend_10507078.html&quot;, &quot;photo&quot;: &quot;photos/10507078.jpg&quot;}, {&quot;name&quot;: &quot;Subramanian . A&quot;, &quot;roll&quot;: &quot;10507080&quot;, &quot;page&quot;: &quot;friends/friend_10507080.html&quot;, &quot;photo&quot;: &quot;photos/10507080.jpg&quot;}, {&quot;name&quot;: &quot;Sundara Rama Prasad . S&quot;, &quot;roll&quot;: &quot;10507082&quot;, &quot;page&quot;: &quot;friends/friend_10507082.html&quot;, &quot;photo&quot;: &quot;photos/10507082.jpg&quot;}, {&quot;name&quot;: &quot;Suvedhan . J&quot;, &quot;roll&quot;: &quot;10507084&quot;, &quot;page&quot;: &quot;friends/friend_10507084.html&quot;, &quot;photo&quot;: &quot;photos/10507084.jpg&quot;}, {&quot;name&quot;: &quot;Vasanth . S&quot;, &quot;roll&quot;: &quot;10507086&quot;, &quot;page&quot;: &quot;friends/friend_10507086.html&quot;, &quot;photo&quot;: &quot;photos/10507086.jpg&quot;}, {&quot;name&quot;: &quot;Velvizhi . R&quot;, &quot;roll&quot;: &quot;10507088&quot;, &quot;page&quot;: &quot;friends/friend_10507088.html&quot;, &quot;photo&quot;: &quot;photos/10507088.jpg&quot;}, {&quot;name&quot;: &quot;Vijayalakshmi . R&quot;, &quot;roll&quot;: &quot;10507090&quot;, &quot;page&quot;: &quot;friends/friend_10507090.html&quot;, &quot;photo&quot;: &quot;photos/10507090.jpg&quot;}, {&quot;name&quot;: &quot;Viswanathan . A&quot;, &quot;roll&quot;: &quot;10507092&quot;, &quot;page&quot;: &quot;friends/friend_10507092.html&quot;, &quot;photo&quot;: &quot;photos/10507092.jpg&quot;}, {&quot;name&quot;: &quot;Yokesh Mahadevan . S&quot;, &quot;roll&quot;: &quot;10507094&quot;, &quot;page&quot;: &quot;friends/friend_10507094.html&quot;, &quot;photo&quot;: &quot;photos/10507094.jpg&quot;}, {&quot;name&quot;: &quot;Abuthahir.L&quot;, &quot;roll&quot;: &quot;10507902&quot;, &quot;page&quot;: &quot;friends/friend_10507902.html&quot;, &quot;photo&quot;: &quot;photos/10507902.jpg&quot;}, {&quot;name&quot;: &quot;Dinesh.P&quot;, &quot;roll&quot;: &quot;10507904&quot;, &quot;page&quot;: &quot;friends/friend_10507904.html&quot;, &quot;photo&quot;: &quot;photos/10507904.jpg&quot;}, {&quot;name&quot;: &quot;Karthikeyan . K&quot;, &quot;roll&quot;: &quot;10507906&quot;, &quot;page&quot;: &quot;friends/friend_10507906.html&quot;, &quot;photo&quot;: &quot;photos/10507906.jpg&quot;}, {&quot;name&quot;: &quot;Ramesh. V&quot;, &quot;roll&quot;: &quot;10507908&quot;, &quot;page&quot;: &quot;friends/friend_10507908.html&quot;, &quot;photo&quot;: &quot;photos/10507908.jpg&quot;}];
 
-  // Gallery lightbox
-  document.querySelectorAll('.gallery img').forEach(img=>{
-    img.addEventListener('click', e=>{
-      const url = img.dataset.full || img.src;
-      const lb = document.getElementById('lightbox');
-      document.getElementById('lightboxImg').src = url;
-      lb.style.display = 'flex';
-    });
-  });
-  function hideLightbox(){ document.getElementById('lightbox').style.display='none'; }
-  // Close on Esc
-  document.addEventListener('keydown', e=>{ if(e.key === 'Escape') hideLightbox(); });
+// Render cards
+const grid = document.getElementById('grid');
+friends.forEach(fr=>{{
+  const a = document.createElement('a'); a.href = fr.page; a.style.textDecoration='none'; a.style.color='inherit';
+  const card = document.createElement('div'); card.className='card';
+  const img = document.createElement('img'); img.src=fr.photo; img.className='thumb'; img.onerror=function(){{this.src='photos/placeholder.jpg'}};
+  const name = document.createElement('div'); name.className='name'; name.textContent=fr.name;
+  const roll = document.createElement('div'); roll.className='roll'; roll.textContent='Roll: '+fr.roll;
+  card.appendChild(img); card.appendChild(name); card.appendChild(roll); a.appendChild(card); grid.appendChild(a);
+}});
+
+// Search
+document.getElementById('search').addEventListener('input', e=>{{
+  const val = e.target.value.toLowerCase();
+  document.querySelectorAll('#grid a').forEach(a=>{{
+    const text = a.textContent.toLowerCase();
+    a.style.display = text.includes(val)?'':'none';
+  }});
+}});
+
+// Slideshow basic
+const slides = ['photos/group1.jpg','photos/group2.jpg','photos/group3.jpg','photos/group4.jpg','photos/group5.jpg'];
+let idx=0;
+setInterval(()=>{ idx=(idx+1)%slides.length; document.getElementById('slideImg').src=slides[idx]; },4000);
 </script>
 </body>
 </html>
